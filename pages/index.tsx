@@ -7,6 +7,12 @@ export default function Home() {
     <div>
       <NavBar />
       <h1>Hello</h1>
+      <style jsx>{`
+        h1 {
+          font-size: 52px;
+          color: blue;
+        }
+      `}</style>
     </div>
   );
 }
