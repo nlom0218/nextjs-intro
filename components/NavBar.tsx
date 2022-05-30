@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
-import styles from "../styles/NavBar.module.css";
 
 export default function NavBar() {
   const router = useRouter();
@@ -16,14 +15,13 @@ export default function NavBar() {
       </Link>
       <style jsx>{`
         nav {
-          /* background-color: tomato; */
           font-size: 24px;
         }
         a {
           text-decoration: none;
         }
         .active {
-          color: yellow;
+          color: red;
         }
       `}</style>
     </nav>
