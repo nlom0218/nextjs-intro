@@ -7,7 +7,7 @@ export default function NavBar() {
 
   return (
     <nav>
-      <img src="xxx" />
+      <img src="/vercel.svg" />
       <div>
         <Link href="/">
           <a className={router.pathname === "/" ? "active" : ""}>Home</a>
