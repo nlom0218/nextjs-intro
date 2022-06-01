@@ -7,21 +7,17 @@ interface IMovie {
   poster_path: string;
 }
 
-export default function Home() {
-  const [movies, setMovies] = useState<IMovie[] | []>([]);
-  useEffect(() => {
-    (async () => {
-      const { results } = await (await fetch(`/api/movies`)).json();
-      setMovies(results);
-    })();
-  }, []);
-  console.log(movies);
+interface IResults {
+  results: IMovie[];
+}
+
+export default function Home({ results }: IResults) {
+  console.log(results, "zz");
 
   return (
     <div className="container">
       <Seo title="Home" />
-      {!movies && <h4>Loading...</h4>}
-      {movies.map((movie) => {
+      {results.map((movie) => {
         return (
           <div key={movie.id} className="movie">
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
@@ -52,4 +48,15 @@ export default function Home() {
       `}</style>
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const { results } = await (
+    await fetch(`http://localhost:3000/api/movies`)
+  ).json();
+  return {
+    props: {
+      results,
+    },
+  };
 }
