@@ -17,7 +17,11 @@ const nextConfig = {
     return [
       {
         source: "/api/movies",
-        destination: `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`,
+        destination: `https://api.themoviedb.org/3/movie/popular?api_key=6725650d4790dfee5aff087618cb4a61`,
+      },
+      {
+        source: "/api/movies/:id",
+        destination: `https://api.themoviedb.org/3/movie/:id?api_key=6725650d4790dfee5aff087618cb4a61`,
       },
     ];
   },

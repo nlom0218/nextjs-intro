@@ -1,4 +1,5 @@
-import { useEffect, useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import Seo from "../components/Seo";
 
 interface IMovie {
@@ -12,16 +13,26 @@ interface IResults {
 }
 
 export default function Home({ results }: IResults) {
-  console.log(results, "zz");
-
+  const router = useRouter();
+  const onClick = (id: number) => {
+    router.push(`/movies/${id}`);
+  };
   return (
     <div className="container">
       <Seo title="Home" />
       {results.map((movie) => {
         return (
-          <div key={movie.id} className="movie">
+          <div
+            className="movie"
+            key={movie.id}
+            onClick={() => onClick(movie.id)}
+          >
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
-            <h4>{movie.original_title}</h4>
+            <Link href={`/movies/${movie.id}`}>
+              <a>
+                <h4>{movie.original_title}</h4>
+              </a>
+            </Link>
           </div>
         );
       })}
