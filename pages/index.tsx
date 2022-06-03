@@ -33,6 +33,7 @@ export default function Home({ results }: IResults) {
                 <h4>{movie.original_title}</h4>
               </a>
             </Link>
+            <div>오늘은 펜션와서 술 마십니다.</div>
           </div>
         );
       })}
