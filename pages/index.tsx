@@ -14,8 +14,17 @@ interface IResults {
 
 export default function Home({ results }: IResults) {
   const router = useRouter();
-  const onClick = (id: number) => {
-    router.push(`/movies/${id}`);
+  const onClick = (id: number, title: string) => {
+    router.push(
+      {
+        pathname: `/movies/${id}`,
+        query: {
+          id,
+          title,
+        },
+      },
+      `/movies/${id}`
+    );
   };
   return (
     <div className="container">
@@ -25,15 +34,22 @@ export default function Home({ results }: IResults) {
           <div
             className="movie"
             key={movie.id}
-            onClick={() => onClick(movie.id)}
+            onClick={() => onClick(movie.id, movie.original_title)}
           >
             <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
-            <Link href={`/movies/${movie.id}`}>
+            <Link
+              href={{
+                pathname: `/movies/${movie.id}`,
+                query: {
+                  title: movie.original_title,
+                },
+              }}
+              as={`/movies/${movie.id}`}
+            >
               <a>
                 <h4>{movie.original_title}</h4>
               </a>
             </Link>
-            <div>오늘은 펜션와서 술 마십니다.</div>
           </div>
         );
       })}
